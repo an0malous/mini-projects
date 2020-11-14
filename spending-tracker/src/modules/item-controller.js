@@ -1,6 +1,6 @@
 import { itemsData } from '../index.js';
+import eventsBus from '../modules/events-bus.js'
 const itemControllerContainer = document.querySelector('.add-item');
-
 
 class ItemController {
   constructor(container){
@@ -9,38 +9,37 @@ class ItemController {
     this.itemPrice = 0;
   }
 
-  init() {
-    this.render()
+  updateInputValue (e){ 
+    this[e.target.name] = e.target.value   
   }
 
-updateInputValue (event){
-  this.itemName = event.target.value
-  
-}
+  addItem (){
+   itemsData.push(this.itemName)
+   eventsBus.publish('itemAdded', this.itemName)
+ }
 
+  init() {
+    this.render()
+    this.addEventListeners()
+  }
+
+  addEventListeners(){
+    const inputs = document.querySelector('#item-name');
+    const addBtn = document.querySelector('#add')
+    inputs.addEventListener('change', (e)=>this.updateInputValue(e));
+    addBtn.addEventListener('click', (e)=>this.addItem(e)) 
+  }
 
   render (){
     this.container.innerHTML=`
       <header>Add a new item</header>
-      <input id="item-name class="item-inputs" type="text" name="itemName" placeholder="product name" />
-      <input id="item-price class="item-inputs" type="number" name="itemPrice" placeholder="product price" />
+      <input id="item-name" class="item-inputs" type="text" name="itemName" placeholder="product name" />
+      <input id="item-price" class="item-inputs" type="number" name="itemPrice" placeholder="product price" />
       <button id="add">Add</button>
-    `
-    const inputs = document.querySelectorAll('.item-inputs');
-    inputs.addEventListener('change', this.updateInputValue());
-    const addBtn = document.querySelector('#add');
-    addBtn.addEventListener('click', ()=>{
-      itemsData.push([this.itemName, this.itemPrice])
-      
-    })
+    `  
+    console.log("render")
   }
 }
 
 export default new ItemController(itemControllerContainer)
 
-echo "# mini-projects" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:an0malous/mini-projects.git
