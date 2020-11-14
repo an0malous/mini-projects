@@ -14,8 +14,8 @@ class ItemController {
   }
 
   addItem (){
-   itemsData.push(this.itemName)
-   eventsBus.publish('itemAdded', this.itemName)
+   itemsData.push({itemName: this.itemName, itemPrice: this.itemPrice})
+   eventsBus.publish('itemAdded')
  }
 
   init() {
@@ -24,9 +24,11 @@ class ItemController {
   }
 
   addEventListeners(){
-    const inputs = document.querySelector('#item-name');
+    const inputs = document.querySelectorAll('.item-inputs');
+    for(let i = 0; i < inputs.length; i++){
+      inputs[i].addEventListener('change', (e)=>this.updateInputValue(e));
+    };
     const addBtn = document.querySelector('#add')
-    inputs.addEventListener('change', (e)=>this.updateInputValue(e));
     addBtn.addEventListener('click', (e)=>this.addItem(e)) 
   }
 

@@ -1,4 +1,5 @@
 import { itemsData } from '../index.js'
+import eventsBus from '../modules/events-bus.js';
 const displayContainer = document.querySelector('.display');
 
 class Display {
@@ -9,6 +10,7 @@ class Display {
 
   init() {
     this.render()
+    eventsBus.subscribe('itemAdded', this.render)
   }
 
 render(){
@@ -16,7 +18,7 @@ render(){
     <header>Items bought this month</header>
     <article>
       <ul>
-        ${itemsData.map(item=>`<li>${item}</li>`).join('')}
+        ${itemsData.map(item=>`<li>${item.itemName} -  ${item.itemPrice}円</li>`).join('')}
       <ul>
     </acrticle>
   `
