@@ -6,6 +6,7 @@ class Display {
   constructor(displayContainer){
     this.itemsData = itemsData;
     this.displayContainer = displayContainer;
+    this.render = this.render.bind(this)
   }
 
   init() {
@@ -18,7 +19,7 @@ render(){
     <header>Items bought this month</header>
     <article>
       <ul>
-        ${itemsData.map(item=>`<li>${item.itemName} -  ${item.itemPrice}円</li>`).join('')}
+        ${itemsData.map(item=>`<li>${item}</li>`).join('')}
       <ul>
     </acrticle>
   `
