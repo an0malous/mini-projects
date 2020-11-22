@@ -1,6 +1,6 @@
 
 
-interface Mappable {
+export interface Mappable {
     location: {
         lat: number;
         lng: number;
@@ -11,7 +11,7 @@ interface Mappable {
 class CustomMap {
     private googleMap: google.maps.Map;
     constructor(divId: string){
-       this.googleMap = new google.maps.Map(document.querySelector('divId'), {zoom: 2, center: {
+       this.googleMap = new google.maps.Map(document.querySelector(divId), {zoom: 2, center: {
         lat: 0,
         lng: 0  
         }
@@ -29,7 +29,7 @@ class CustomMap {
 
         marker.addListener('click', ()=>{
             const infoWindow = new google.maps.InfoWindow({
-                content: 'Hi'
+                content: mappable.markerContent()
             });
 
             infoWindow.open(this.googleMap, marker);
