@@ -4,8 +4,8 @@ class User {
     
     name: string;
     location: {
-        lat: Number;
-        lng: Number;
+        lat: number;
+        lng: number;
     };
     constructor(){
         this.name = faker.name.firstName();
