@@ -7,7 +7,6 @@ export interface Mappable {
     };
     markerContent(): string;
 }
-
 class CustomMap {
     private googleMap: google.maps.Map;
     constructor(divId: string){

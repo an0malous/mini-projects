@@ -1,5 +1,5 @@
 import faker from 'faker';
-import {Mappable, mappable} from './CustomMap';
+import {Mappable} from './CustomMap';
 
 class User implements Mappable {
     
