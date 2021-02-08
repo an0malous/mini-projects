@@ -2,9 +2,11 @@ const express  = require('express');
 const UserRepository = require('./repos/users');
 const userRepo = new UserRepository('users.json')
 
+const bodyParser = require('body-parser')
+
 
 const app = express();
-app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res)=>{
    res.send(`
@@ -23,7 +25,7 @@ app.get('/', (req, res)=>{
 app.post('/', async (req, res)=>{
    const { email, password, passwordConfirmation } = req.body;
 
-   const existingUser = await usersRepo.getOneBy({ email });
+   const existingUser = await userRepo.getOneBy({ email });
 
    if(existingUser){
       return res.send('Email already in use')
@@ -32,6 +34,10 @@ app.post('/', async (req, res)=>{
    if(password !== passwordConfirmation){
       return res.send('Password must match');
    }
+
+   const user = await usersRepo.create({ email, password })
+
+   
 
    res.send("Account Created")
 })
