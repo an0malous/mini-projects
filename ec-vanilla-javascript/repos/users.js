@@ -2,7 +2,7 @@ const { create } = require('domain');
 const fs = require('fs');
 const crypto = require('crypto');
 
-class UserRepo {
+class UserRepository {
 	constructor(filename) {
 		if (!filename) {
 			throw new Error('Creating a repository requires a file name.');
@@ -82,4 +82,4 @@ class UserRepo {
 	}
 }
 
-module.exports = new UserRepo('users.jon');
+module.exports = UserRepository;
