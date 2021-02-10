@@ -60,7 +60,7 @@ class UserRepository {
 
 	async getOne(id) {
 		const records = await this.getAll();
-		return console.log(records.find((record) => record.id === id));
+		return records.find((record) => record.id === id);
 	}
 
 	async delete(id) {
@@ -91,6 +91,7 @@ class UserRepository {
 				}
 
 				if (found) {
+					
 					return record;
 				}
 			}
@@ -98,4 +99,4 @@ class UserRepository {
 	}
 }
 
-module.exports = UserRepository;
+module.exports = new UserRepository('users.json');
