@@ -6,4 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var matches = fs_1.default.readFileSync('football.csv', {
     encoding: 'utf-8'
-}).split('/n');
+}).split('/n')
+    .map(function (row) {
+    return row.split('');
+});
+var MatchResult;
+(function (MatchResult) {
+    MatchResult["HomeWin"] = "HI";
+    MatchResult["AwayWin"] = "A";
+    MatchResult["Draw"] = "D";
+})(MatchResult || (MatchResult = {}));
