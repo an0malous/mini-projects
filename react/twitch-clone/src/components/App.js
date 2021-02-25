@@ -7,14 +7,14 @@ import StreamDelete from './streams/StreamDelete';
 import StreamShow from './streams/StreamShow';
 import Header from './Header.js';
 
-const App = () => {
+const App = ({ store }) => {
 	return (
 		<div className="ui container">
 			<BrowserRouter>
 				<div>
 					<Header />
-					<Route path="/" exact component={StreamList} />
-					<Route path="/streams/new" exact component={StreamCreate} />
+					<Route path="/" exact render={()=><StreamList />} />
+					<Route path="/streams/new" exact render={()=><StreamCreate  />} />
 					<Route path="/streams/edit" exact component={StreamEdit} />
 					<Route
 						path="/streams/delete"
