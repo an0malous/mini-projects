@@ -27,12 +27,13 @@ const renderError = ({ error, touched }) => {
 const StreamCreate = ({ handleSubmit, createStream }) => {
 	
 	function onSubmit(formValues) {
+      console.log(formValues)
 		createStream(formValues);
 	}
 
 	return (
       
-		<form onSubmit={()=>handleSubmit(onSubmit)} className="ui form error">
+		<form onSubmit={handleSubmit(onSubmit)} className="ui form error">
 			<Field name="title" label="Enter Title" component={renderInput} />
 			<Field
 				name="description"
