@@ -8,16 +8,16 @@ const StreamDelete = ({
 	deleteStream,
 	fetchStream,
 	match,
-	stream: { title },
+	stream,
 }) => {
 	useEffect(() => {
 		fetchStream(match.params.id);
 	}, []);
 
 	const renderContent = () => {
-		return !title
+		return !stream.title
 			? 'Are you sure you want to delete this stream'
-			: `Are you sure you want to delete the stream: ${title}`;
+			: `Are you sure you want to delete the stream: ${stream.title}`;
 	};
 
 	const actions = (
