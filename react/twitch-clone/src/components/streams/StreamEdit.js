@@ -1,15 +1,15 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { fetchStreams, editStream } from '../../actions/index';
+import { fetchStream, editStream } from '../../actions/index';
 import StreamForm from './StreamForm';
 
 const StreamEdit = ({
 	match,
-	fetchStreams, editStream,
+	fetchStream, editStream,
 	stream: { title, description },
 }) => {
 	useEffect(() => {
-		fetchStreams(match.params.id);
+		fetchStream(match.params.id);
 	}, []);
 
 	const onSubmit = (formValues) => {
@@ -35,6 +35,6 @@ const StreamEdit = ({
 const mapStateToProps = (state, ownProps) => {
 	return { stream: state.streams[ownProps.match.params.id] };
 };
-export default connect(mapStateToProps, { fetchStreams, editStream })(
+export default connect(mapStateToProps, { fetchStream, editStream })(
 	StreamEdit
 );
