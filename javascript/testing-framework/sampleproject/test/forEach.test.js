@@ -14,7 +14,7 @@ it('should sum an array', () => {
 		total += val;
 	});
 
-	assert.strictEqual(total, 6);
+	assert.strictEqual(total, 10);
 	numbers.push(3);
 	numbers.push(3);
 	numbers.push(3);
