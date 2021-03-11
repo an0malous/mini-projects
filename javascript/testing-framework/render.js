@@ -1,5 +1,5 @@
 const jsdom = require('jsdom');
-const path = require('node:path');
+const path = require('path');
 const { JSDOM } = jsdom;
 
 const render = async (filename) => {
